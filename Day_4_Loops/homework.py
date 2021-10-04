@@ -19,6 +19,3 @@ for i in range(1,int(height)+1):
     print((int(height) - i) * " " + ((i*2)-1) * "*")
 
 #Exercise 3
-
-prime = input("Enter any positive number: ")
-if prime
