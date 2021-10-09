@@ -1,46 +1,52 @@
-# Exercise a1 and a2
-# Example for input: 22.3, 23.2, 44.5, 46.9, 55.7, 122.4, 66.9
+# Exercise 1
 
-entered_numbers = input("Enter several numbers (comma separated):")
-if entered_numbers == "q":
-    print("You decided to quit")
-else:
-    numbers_list = entered_numbers.split(", ")
-    summa = 0
-    for i in numbers_list:
-        summa += float(i)
-
-    average = summa / len(numbers_list)
-    saraksts = ", ".join(numbers_list)
-    print(f"You did enter these numbers: {saraksts} and average of those is: {average}")
-    print(numbers_list.sort())
-
-# Exercise a3
-# Example for input: 22.3, 23.2, 44.5, 46.9, 55.7, 122.4, 66.9
-
-entered_numbers = input("Enter several numbers (comma separated): ")
-if entered_numbers == "q":
-    print("You decided to quit")
-else:
-    numbers_list = entered_numbers.split(", ")
-    new_numbers_list = []
-    for i in numbers_list:
-        new_numbers_list.append(float(i))
-
-    new_numbers_list.sort()
-    average = (new_numbers_list[-1] + new_numbers_list[-2] + new_numbers_list[-3] + new_numbers_list[0] + new_numbers_list[1] + new_numbers_list[2]) / 6
-    print(
-    f'''
-TOP3 numbers are: {new_numbers_list[-1]}, {new_numbers_list[-2]} , {new_numbers_list[-3]}
-BOTTOM3 numbers are: {new_numbers_list[0]}, {new_numbers_list[1]} , {new_numbers_list[2]}
-Average of these numbers are: {average}
-    ''')
+aggr = []
+while True:
+    entered_numbers = input("Enter numbers and press Enter, or q to quit: ")
+    if entered_numbers.lower() == "q":
+        break
+    else:
+        aggr.append(float(entered_numbers))
+        print(f"All numbers: {aggr}, Average is {sum(aggr) / len(aggr)}")
+        print(f"TOP3 {sorted(aggr)[-3:]}")
+        print(f"BOTTOM3 {sorted(aggr)[:3]}")
 
 # Exercise 2
 
-first = input("Enter begining number:")
-last = input("Enter last number:")
+aggr = []
+start = int(input("Enter first number: "))
+last = int(input("Enter last number: "))
+
+for i in range(start, last+1):
+    cube = i**3
+    print(f"{i} cubed: {cube}")
+    aggr.append(cube)
+print(f"All cubes: {aggr}")
+
+# Exercise 3
+
+sentence = input("Enter some text: ")
+words = sentence.split()
+reversed_word_list = [i[::-1] for i in words]
+new_text = " ".join(reversed_word_list).capitalize()
+print(f"{sentence} --> {new_text}")
 
 
+# Exercise 4
 
-
+question = int(input("Enter how many prime numbers would you like to see: "))
+primes = []
+num = 1
+while len(primes) < question:
+    num += 1
+    not_prime = False
+    if num > 1:
+        for i in range(2, num):
+            if num % i == 0:
+                not_prime = True
+                break
+    if not_prime:
+        continue
+    else:
+        primes.append(num)
+print(primes)
