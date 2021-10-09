@@ -47,6 +47,5 @@ while len(primes) < question:
                 break
     if not_prime:
         continue
-    else:
-        primes.append(num)
+    primes.append(num)
 print(primes)
