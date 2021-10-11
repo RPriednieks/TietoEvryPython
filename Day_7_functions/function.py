@@ -13,14 +13,14 @@ add_mult()
 def is_palindrome():
     text = input("Enter some text: ").lower()
     normal_list = text.split()
-    print(normal_list)
+    slick = "".join(normal_list)
     reverse_list = [i[::-1] for i in normal_list]
     reverse_list.reverse()
-    if normal_list == reverse_list:
+    slick2 = "".join(reverse_list)
+    if slick == slick2:
         print("This is palindrome")
     else:
         print("This is not palindrome")
-    print(reverse_list)
 
 is_palindrome()
 
