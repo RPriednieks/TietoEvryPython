@@ -3,7 +3,7 @@
 
 def get_char_count(text):
     blank_dict = {}
-    for i in text.lower():
+    for i in text():
         if i in blank_dict:
             blank_dict[i] += 1
         else:
