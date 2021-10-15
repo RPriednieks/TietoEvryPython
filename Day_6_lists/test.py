@@ -12,4 +12,3 @@ john = Person("Johhny", "Priednieks")
 print(john.name)
 john.talk()
 
-
