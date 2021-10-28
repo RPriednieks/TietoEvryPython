@@ -24,10 +24,12 @@ def get_prices(vendor):
         gasoline_98 = float(data[4].string[:5])
         diesel = float(data[7].string[:5])
         diesel_premium = float(data[10].string[:5])
+        LPG = float(data[13].string[:5])
         print(gasoline_95)
         print(gasoline_98)
         print(diesel)
         print(diesel_premium)
+        print(LPG)
     elif vendor == "Virši":
         virsi_response = requests.get("https://www.virsi.lv/lv/degvielas-cena")
         virsi_webpage = virsi_response.text
@@ -43,10 +45,30 @@ def get_prices(vendor):
         print(diesel)
         print(CNG)
         print(LPG)
+    elif vendor == "Viada":
+        viada_response = requests.get("https://www.viada.lv/zemakas-degvielas-cenas/")
+        viada_webpage = viada_response.text
+        viada_soup = BeautifulSoup(viada_webpage, "lxml")
+        data = viada_soup.find_all("td")
+        gasoline_95 = float(data[1].string[:5])
+        gasoline_95_premium = float(data[4].string[:5])
+        gasoline_98 = float(data[7].string[:5])
+        diesel = float(data[10].string[:5])
+        diesel_premium = float(data[13].string[:5])
+        LPG = float(data[16].string[:5])
+        gasoline_85 = float(data[19].string[:5])
+        print(gasoline_95)
+        print(gasoline_95_premium)
+        print(gasoline_98)
+        print(diesel)
+        print(diesel_premium)
+        print(LPG)
+        print(gasoline_85)
 
 # get_prices("Neste")
 # get_prices("Circle K")
-get_prices("Virši")
+# get_prices("Virši")
+get_prices("Viada")
 
 # for i in data:
 #     print(i.string)
