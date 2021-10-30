@@ -60,7 +60,7 @@ def get_prices(vendor):
         fuel_dict["85"] = float(data[19].string[:5])
         return fuel_dict
 
-# get_prices("Neste")
+# x = get_prices("Neste")
 # get_prices("Circle K")
 # get_prices("Virši")
 # get_prices("Viada")

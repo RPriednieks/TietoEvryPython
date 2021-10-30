@@ -1,33 +1,26 @@
-import random
-from openpyxl import Workbook
-from openpyxl.chart import LineChart, Reference
-import vendor
+import xlsxwriter
+import vendor as v
 
+workbook = xlsxwriter.Workbook('hello.xlsx')
+worksheet = workbook.add_worksheet()
 
-fuel_types = vendor.get_fuel_types()
+def get_rows():
+    data = []
+    for i in v.get_vendors():
+        sublist = []
+        sublist.append(i)
+        prices = v.get_prices(i)
+        for key in prices:
+            sublist.append(prices[key])
+        data.append(sublist)
+    return data
 
-workbook = Workbook()
-sheet = workbook.active
+data = get_rows()
 
-# Let's create some sample sales data
-rows = [
-    ["", "95", "95 Premium", "98", "DD", "DD Premium", "LPG", "CNG", "85"],
-    ["Neste", ],
-    ["Virši", ],
-    ["CircleK", ],
-    ["Viada", ],
-]
+column_values = []
+column_values.append({"header": "Vendor"})
+for i in v.get_fuel_types():
+    column_values.append({"header": i})
 
-
-for i in fuel_types:
-    sheet.append(i)
-
-#
-# for row in sheet.iter_rows(min_row=2,
-#                            max_row=4,
-#                            min_col=2,
-#                            max_col=13):
-#     for cell in row:
-#         cell.value = random.randrange(5, 100)
-
-workbook.save(filename="hello_world.xlsx")
+worksheet.add_table('A1:I5', {'data': data, 'columns': column_values})
+workbook.close()
