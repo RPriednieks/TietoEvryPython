@@ -1,6 +1,8 @@
 import xlsxwriter
 import vendor as v
+import datetime
 
+workbook = xlsxwriter.Workbook("Fuel prices {:%Y-%m-%d %H-%M-%S}.xlsx".format(datetime.datetime.now()))
 
 def get_rows():
     data = []
@@ -16,19 +18,21 @@ def get_rows():
 
 def get_columns():
     column_values = []
+    currency_format = workbook.add_format({'num_format': '€ #.###'})
     column_values.append({"header": "Vendor"})
     for i in v.get_fuel_types():
-        column_values.append({"header": i})
+        column_values.append({"header": i, "format": currency_format})
     return column_values
 
 
 def create_excel():
     data = get_rows()
     columns = get_columns()
-    workbook = xlsxwriter.Workbook('hello.xlsx')
     worksheet = workbook.add_worksheet()
-    worksheet.add_table('A1:I5', {'data': data, 'columns': columns})
+    worksheet.add_table(0, 0, len(get_rows()), len(get_columns())-1, {"data": data, "columns": columns, "autofilter": False})
     workbook.close()
 
 
 create_excel()
+# x = get_columns()
+# print(x)
