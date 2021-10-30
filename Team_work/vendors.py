@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class Neste:
     neste_response = requests.get("https://www.neste.lv/lv/content/degvielas-cenas")
     neste_webpage = neste_response.text
@@ -15,6 +16,7 @@ class Neste:
 
     def get_DD(self):
         return float(Neste.data[9].string)
+
 
 neste = Neste()
 print(neste.get_DD())
