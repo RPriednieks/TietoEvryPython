@@ -65,9 +65,9 @@ def get_prices(vendor):
         print(LPG)
         print(gasoline_85)
 
-# get_prices("Neste")
-# get_prices("Circle K")
-# get_prices("Virši")
+get_prices("Neste")
+get_prices("Circle K")
+get_prices("Virši")
 get_prices("Viada")
 
 # for i in data:
