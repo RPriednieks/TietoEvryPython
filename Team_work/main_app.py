@@ -31,7 +31,7 @@ def get_columns():
         [{'header': 'Vendor'}, {'header': '95', 'format': <xlsxwriter.format.Format object at 0x7f78a80d6dc0>}]
     """
     column_values = []
-    currency_format = workbook.add_format({'num_format': '€ #.###'})
+    currency_format = workbook.add_format({'num_format': '€ 0.000'})
     column_values.append({"header": "Vendor"})
     for i in v.get_fuel_types(v.fuel_types):
         column_values.append({"header": i, "format": currency_format})
@@ -79,9 +79,10 @@ def create_excel():
         chart1.add_series(x)
     # Chart design and style
     chart1.set_title({'name': 'Degvielas cenu salīdzinājums'})
-    chart1.set_x_axis({'name': 'Cena (€)'})
-    chart1.set_y_axis({'name': 'Degvielas tipi'})
-    chart1.set_style(12)
+    chart1.set_x_axis({'name': 'Cena (€)', 'min': 0.5})
+    chart1.set_y_axis({'name': 'Degvielas tipi', 'major_gridlines': {'visible': True,'line': {'width': 1.25, 'dash_type': 'dash'}},
+                       'num_font': {'size': 14, 'bold': True}})
+    chart1.set_style(2)
     chart_sheet.set_chart(chart1)
     workbook.close()
 
