@@ -7,7 +7,7 @@ years = 100 - int(age)
 print(f"Mmm, its {years} till 100!")
 currentYear = datetime.datetime.now().year
 milestone = currentYear + years
-print(f"You will be 100 years old at yera {milestone}!")
+print(f"You will be 100 years old at year {milestone}!")
 
 #Exercise 2
 width = float(input("Enter width: "))
